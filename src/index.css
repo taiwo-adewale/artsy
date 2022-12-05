@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.transition-300 {
+  @apply transition-all duration-300;
+}
+
+input,
+select {
+  @apply focus:outline-none;
+}
+
+.drop-time {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    rgba(245, 244, 244, 0.24);
+  backdrop-filter: blur(1.5px);
+}
