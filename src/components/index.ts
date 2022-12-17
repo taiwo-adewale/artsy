@@ -9,3 +9,4 @@ export { default as Footer } from "./Footer";
 export { default as SearchBar } from "./SearchBar";
 export { default as Drop } from "./Drop";
 export { default as Breadcrumbs } from "./Breadcrumbs";
+export { default as ButtonPrimary } from "./ButtonPrimary";
