@@ -4,11 +4,11 @@ import { Breadcrumbs } from "../components";
 
 const Auction = () => {
   return (
-    <div className="container">
+    <main className="container">
       <Breadcrumbs path="Home / " page="Auctions" />
 
       <p>Here’s an overview of products actively on auction, explore!</p>
-    </div>
+    </main>
   );
 };
 

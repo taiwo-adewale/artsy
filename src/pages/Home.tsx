@@ -12,7 +12,7 @@ import {
 
 const Home = () => {
   return (
-    <div>
+    <main>
       <Header />
 
       <div className="h-[250px] bg-blue-400 mb-16"></div>
@@ -51,7 +51,7 @@ const Home = () => {
 
       <TopCreators />
       <Newsletter />
-    </div>
+    </main>
   );
 };
 

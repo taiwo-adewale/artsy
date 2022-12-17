@@ -5,7 +5,7 @@ import { dropsData } from "../data";
 
 const Drops = () => {
   return (
-    <div className="container">
+    <main className="container">
       <Breadcrumbs path="Home/ Auctions/ Live bid/ " page="Drop" />
 
       <div className="flex flex-col text-center items-center mt-12 mb-16">
@@ -39,7 +39,7 @@ const Drops = () => {
       </div>
 
       <Newsletter />
-    </div>
+    </main>
   );
 };
 
