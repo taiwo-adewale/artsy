@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 
 import { SearchBar } from "../components";
 import { categories, marketplace } from "../data";
+import FilterIcon from "../constants/icons/FilterIcon";
 
 const Marketplace = () => {
+  const [isCategoriesExpanded, setIsCategoriesExpanded] =
+    useState<boolean>(true);
+  const [isPriceExpanded, setIsPriceExpanded] = useState<boolean>(true);
+  const [isArtistExpanded, setIsArtistExpanded] = useState<boolean>(true);
+
   return (
     <div>
       <div className="container">
@@ -29,59 +36,108 @@ const Marketplace = () => {
         </div>
 
         <div className="grid grid-cols-12 gap-x-12 mt-12">
-          <div className="col-span-3">
+          <aside className="col-span-3">
             <div className="flex flex-col">
-              <h4>
-                <span>Filter</span>
+              <h4 className="flex items-center space-x-2 mb-2">
+                <span>
+                  <FilterIcon className="w-6 h-6" />
+                </span>
+                <span className="font-medium text-2xl">Filter</span>
               </h4>
               <div className="w-full h-1 bg-[#AFB091] rounded-full"></div>
 
               <div>
-                <div className="flex justify-between">
-                  <h5 className="text-textPrimary">By category</h5>
+                <div
+                  onClick={() =>
+                    setIsCategoriesExpanded((prevState) => !prevState)
+                  }
+                  className="flex justify-between items-end mt-8 cursor-pointer"
+                >
+                  <h5 className="text-textPrimary text-xl font-medium">
+                    By category
+                  </h5>
+
+                  {isCategoriesExpanded ? (
+                    <HiChevronUp className="text-xl" />
+                  ) : (
+                    <HiChevronDown className="text-xl" />
+                  )}
                 </div>
 
-                <form>
-                  {categories.map((category) => (
-                    <div className="flex space-x-2">
-                      <input type="checkbox" id={category} />
-                      <label htmlFor={category} className="capitalize">
-                        {category}
-                      </label>
-                    </div>
-                  ))}
-                </form>
+                {isCategoriesExpanded && (
+                  <form className="mt-8">
+                    {categories.map((category) => (
+                      <div className="flex space-x-2">
+                        <input
+                          type="checkbox"
+                          id={category}
+                          className="checked:bg-red-500"
+                        />
+                        <label htmlFor={category} className="capitalize">
+                          {category}
+                        </label>
+                      </div>
+                    ))}
+                  </form>
+                )}
               </div>
 
               <div>
-                <div className="flex justify-between">
-                  <h5 className="text-textPrimary">By Price</h5>
+                <div
+                  onClick={() => setIsPriceExpanded((prevState) => !prevState)}
+                  className="flex justify-between items-end mt-8 cursor-pointer"
+                >
+                  <h5 className="text-textPrimary text-xl font-medium">
+                    By Price
+                  </h5>
+
+                  {isPriceExpanded ? (
+                    <HiChevronUp className="text-xl" />
+                  ) : (
+                    <HiChevronDown className="text-xl" />
+                  )}
                 </div>
 
-                <p>$100.00 - $150.00</p>
-
-                <form>
-                  <input type="range" className="w-full" />
-                </form>
+                {isPriceExpanded && (
+                  <>
+                    <p className="mt-8">$100.00 - $150.00</p>{" "}
+                    <form>
+                      <input type="range" className="w-full" />
+                    </form>
+                  </>
+                )}
               </div>
 
               <div>
-                <div className="flex justify-between">
-                  <h5 className="text-textPrimary">By artist</h5>
+                <div
+                  onClick={() => setIsArtistExpanded((prevState) => !prevState)}
+                  className="flex justify-between items-end mt-8 cursor-pointer"
+                >
+                  <h5 className="text-textPrimary text-xl font-medium">
+                    By artist
+                  </h5>
+
+                  {isArtistExpanded ? (
+                    <HiChevronUp className="text-xl" />
+                  ) : (
+                    <HiChevronDown className="text-xl" />
+                  )}
                 </div>
 
-                <div className="flex flex-col">
-                  <span>All</span>
-                  <span>Below $100.00</span>
-                  <span>$100.00 - $150.00</span>
-                  <span>$150.00 - $200.00</span>
-                  <span>Above $200.00</span>
-                </div>
+                {isArtistExpanded && (
+                  <div className="flex flex-col mt-8">
+                    <span className="mb-1.5">All</span>
+                    <span className="mb-1.5">Below $100.00</span>
+                    <span className="mb-1.5">$100.00 - $150.00</span>
+                    <span className="mb-1.5">$150.00 - $200.00</span>
+                    <span className="mb-1.5">Above $200.00</span>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
+          </aside>
 
-          <div className="col-span-9">
+          <main className="col-span-9">
             <div className="grid grid-cols-3 gap-12">
               {marketplace.map((item) => (
                 <div className="rounded-xl p-3 flex flex-col shadow-[0px_34px_68px_rgba(217,225,244,0.36)] bg-white">
@@ -99,7 +155,7 @@ const Marketplace = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </main>
         </div>
 
         <div className="text-center mt-12">
